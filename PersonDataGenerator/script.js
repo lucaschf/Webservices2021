@@ -162,7 +162,7 @@ function inProgress(inProgress) {
 }
 
 function dummyPerson() {   
-  $.getJSON( "https://drive.google.com/file/d/16Cd96MqmNCdMlQPXBOUJoGZ9pE40ufY0/view?usp=sharing", function( data ) {
+  $.getJSON( "https://raw.githubusercontent.com/lucaschf/Webservices2021/main/PersonDataGenerator/dummy_person.json", function( data ) {
     var items = [];
     $.each( data, function( key, val ) {
       console.log(val)
