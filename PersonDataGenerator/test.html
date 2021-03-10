@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html class="bg-dark">
+
+<head>
+    <title>Wheater</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="style.css" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+
+    <script src="script.js"></script>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0"
+        crossorigin="anonymous"></script>
+    <style>
+        @import url("https://fonts.googleapis.com/css?family=Open+Sans");
+
+        html {
+            font-family: 'proxima-nova', sans-serif;
+            font-size: 16px;
+        }
+
+        .sidebar {
+            padding: 10px;
+            position: fixed;
+            width: 18%;
+            color: #fff !important;
+            height: 100vh;
+            background: #333;
+            font-size: 0.65em;
+        }
+
+        .nav {
+            position: relative;
+            margin: 0 15%;
+            text-align: right;
+            top: 50%;
+            transform: translateY(-50%);
+            font-weight: bold;
+        }
+
+        .nav ul {
+            list-style: none;
+        }
+
+        .nav ul li {
+            position: relative;
+            margin: 3.2em 0;
+        }
+
+        .nav ul li a {
+            color: #fff !important;
+            line-height: 5em;
+            text-transform: uppercase;
+            text-decoration: none;
+            letter-spacing: 0.4em;
+            display: block;
+            transition: all ease-out 300ms;
+        }
+
+        .nav ul li.active a {
+            color: white;
+        }
+
+        .nav ul li:not(.active)::after {
+            opacity: 0.2;
+        }
+
+        .nav ul li:not(.active):hover a {
+            color: rgba(255, 255, 255, 0.75);
+        }
+
+        .nav ul li::after {
+            content: "";
+            position: absolute;
+            width: 100%;
+            height: 0.2em;
+            left: 0;
+            bottom: 0;
+        }
+
+        .twitter {
+            position: relative;
+            width: 75%;
+            float: right;
+            height: 100vh;
+        }
+
+        .twitter .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+        }
+
+        .twitter a {
+            position: relative;
+        }
+
+        .twitter a img {
+            width: 48px;
+            height: 48px;
+        }
+
+        .twitter p {
+            text-transform: uppercase;
+            font-size: 1em;
+            letter-spacing: 0.1em;
+            color: #fff;
+            font-weight: bold;
+            margin-top: 20px;
+        }
+    </style>
+
+<body>
+    <!-- This is a reverse engineering of the "Hyperspace"
+        design from HTML5 Up! https://html5up.net/hyperspace -->
+
+    <main class="main">
+        <aside class="sidebar">
+            <nav class="nav">
+                <div class="accordion accordion-flush bg-dark"  id="accordionFlushExample">
+                    <div class="accordion-item"  style="color: white;">
+                        <h2 class="accordion-header" id="flush-headingOne">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#flush-collapseOne" aria-expanded="false"
+                                aria-controls="flush-collapseOne">
+                                Accordion Item #1   asd asd asd asd asd d ad asd sa
+                            </button>
+                        </h2>
+                        <div id="flush-collapseOne" class="accordion-collapse collapse"
+                            aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
+                            <div class="accordion-body">Placeholder content for this accordion, which is intended to
+                                demonstrate the <code>.accordion-flush</code> class. This is the first item's accordion
+                                body.</div>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="flush-headingTwo">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#flush-collapseTwo" aria-expanded="false"
+                                aria-controls="flush-collapseTwo">
+                                Accordion Item #2
+                            </button>
+                        </h2>
+                        <div id="flush-collapseTwo" class="accordion-collapse collapse"
+                            aria-labelledby="flush-headingTwo" data-bs-parent="#accordionFlushExample">
+                            <div class="accordion-body">Placeholder content for this accordion, which is intended to
+                                demonstrate the <code>.accordion-flush</code> class. This is the second item's accordion
+                                body. Let's imagine this being filled with some actual content.</div>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="flush-headingThree">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#flush-collapseThree" aria-expanded="false"
+                                aria-controls="flush-collapseThree">
+                                Accordion Item #3
+                            </button>
+                        </h2>
+                        <div id="flush-collapseThree" class="accordion-collapse collapse"
+                            aria-labelledby="flush-headingThree" data-bs-parent="#accordionFlushExample">
+                            <div class="accordion-body">Placeholder content for this accordion, which is intended to
+                                demonstrate the <code>.accordion-flush</code> class. This is the third item's accordion
+                                body. Nothing more exciting happening here in terms of content, but just filling up the
+                                space to make it look, at least at first glance, a bit more representative of how this
+                                would look in a real-world application.</div>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+        </aside>
+
+        <section class="twitter">
+            <div class="container">
+                <a target="_blank" href="https://twitter.com/ReisnerShawn">
+                    <img class="social" src="https://cdn1.iconfinder.com/data/icons/logotypes/32/twitter-128.png">
+                </a>
+                <p>Follow me</p>
+                <p>on Twitter!</p>
+            </div>
+        </section>
+    </main>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+
+    <script src="jquery.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,39 @@
+{
+  "id": 296107,
+  "num_rows": 1000,
+  "file_format": "json",
+  "name": "professional_info",
+  "array": true,
+  "columns": [
+    {
+      "name": "title",
+      "null_percentage": 0,
+      "type": "Job Title",
+      "formula": ""
+    },
+    {
+      "name": "company_name",
+      "null_percentage": 0,
+      "type": "Company Name",
+      "formula": ""
+    },
+    {
+      "name": "buzzword",
+      "null_percentage": 0,
+      "type": "Buzzword",
+      "formula": ""
+    },
+    {
+      "name": "department",
+      "null_percentage": 0,
+      "type": "Department (Corporate)",
+      "formula": ""
+    },
+    {
+      "name": "slogan",
+      "null_percentage": 0,
+      "type": "Slogan",
+      "formula": ""
+    }
+  ]
+}

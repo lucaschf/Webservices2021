@@ -1,0 +1,67 @@
+{
+  "id": 296112,
+  "num_rows": 50,
+  "file_format": "json",
+  "name": "person_generation_schema",
+  "array": true,
+  "columns": [
+    {
+      "name": "email",
+      "null_percentage": 0,
+      "type": "Email Address",
+      "formula": ""
+    },
+    {
+      "name": "gender",
+      "null_percentage": 0,
+      "type": "Gender (Binary)",
+      "formula": ""
+    },
+    {
+      "name": "language",
+      "null_percentage": 0,
+      "type": "Language",
+      "formula": ""
+    },
+    {
+      "name": "title",
+      "null_percentage": 0,
+      "type": "Title",
+      "formula": ""
+    },
+    {
+      "name": "phone",
+      "null_percentage": 0,
+      "type": "Custom List",
+      "values": [
+        "short",
+        "medium",
+        "long"
+      ],
+      "selectionStyle": "random",
+      "distribution": null,
+      "formula": ""
+    },
+    {
+      "name": "professional_info",
+      "null_percentage": 0,
+      "type": "Blank",
+      "formula": ""
+    },
+    {
+      "name": "age",
+      "null_percentage": 0,
+      "type": "Custom List",
+      "values": [
+        "infant",
+        "child",
+        "young-adult",
+        "adult",
+        "elderly"
+      ],
+      "selectionStyle": "random",
+      "distribution": null,
+      "formula": ""
+    }
+  ]
+}
