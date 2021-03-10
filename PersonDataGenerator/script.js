@@ -178,13 +178,19 @@ function showPersonDetails(person) {
 }
 
 function inProgress(inProgress) {
+  var dataContainer = $("#result");
+
   if (inProgress) {
-    $("#result").innerHTML = '';
+    document.querySelector("#result").innerHTML = '';
+    dataContainer.hide();
     $("#progress").show();
     $("#btnFetch").hide();
+    $("#btnDownload").hide();
   }
   else {
+    dataContainer.show();
     $("#btnFetch").show();
+    $("#btnDownload").show();
     $("#progress").hide();
   }
 }
@@ -204,4 +210,22 @@ function initMap(latitude, longitude, title) {
     map: map,
     title: title
   });
+}
+
+function download(data, filename, type) {
+  var file = new Blob([data], {type: type});
+  if (window.navigator.msSaveOrOpenBlob) // IE10+
+      window.navigator.msSaveOrOpenBlob(file, filename);
+  else { // Others
+      var a = document.createElement("a"),
+              url = URL.createObjectURL(file);
+      a.href = url;
+      a.download = filename;
+      document.body.appendChild(a);
+      a.click();
+      setTimeout(function() {
+          document.body.removeChild(a);
+          window.URL.revokeObjectURL(url);  
+      }, 0); 
+  }
 }

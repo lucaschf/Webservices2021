@@ -103,22 +103,25 @@ td, tr, th {
     text-transform: capitalize;
 }
 
-
-.filters{
-    max-height:70vh !important;
-    overflow-y: scroll !important;
-}
-
-
-.gallery{
-    max-height:90vh;
+.gallery {
+    height:75vh;
     border: none !important;
-    overflow-y: scroll;
+    overflow-y: auto;
 } 
 
-
 .map{
-
 	width: 100%; 
 	min-height: 150px;
+}
+
+.accordion{
+    border: none !important;
+}
+
+.accordion .active{
+    border: none !important;
+}
+
+.accordion-button:not(.collapsed) {   
+     background-color: #fff !important; 
 }

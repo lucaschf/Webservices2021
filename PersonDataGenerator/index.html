@@ -12,7 +12,8 @@
 
 <body class="bg-c">
   <!-- modal -->
-  <div class="modal fade" id="persomModal" data-bs-backdrop="static" data-bs-keyboard="false"  tabindex="-1" aria-labelledby="persomModalLabel" aria-hidden="true">
+  <div class="modal fade" id="persomModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+    aria-labelledby="persomModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-xl">
       <div class="modal-content">
         <div class="modal-header">
@@ -56,205 +57,261 @@
     <div class="meta_header">
       <h2 class="page-subtitle">Generate fictitious persons just for fun</h2>
     </div>
-    <div class="row">
-      <div class="col-md-3 filters">
-        <!-- Gender -->
-        <div class="card shadowed mb-3">
-          <div class="card-body">
-            <h5 class="card-title mb-3">Gender</h5>
+   
+      <div class="row">
+        <div class="col-md-3 filters">
+          <div class="accordion accordion-flush shadowed mb-3" id="accordionFilters">
 
-            <div class="form-check pointer">
-              <input checked class="form-check-input pointer" type="radio" name="gender" value="" id="genderAll">
-              <label class="form-check-label pointer" for="genderAll">
-                All
-              </label>
+            <!-- Gender -->
+            <div class="accordion-item">
+              <h2 class="accordion-header" id="flush-headingOne">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                  data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
+                  Gender
+                </button>
+              </h2>
+              <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne"
+                data-bs-parent="#accordionFilters">
+                <div class="accordion-body">
+                  <div class="form-check pointer">
+                    <input checked class="form-check-input pointer" type="radio" name="gender" value="" id="genderAll">
+                    <label class="form-check-label pointer" for="genderAll">
+                      All
+                    </label>
+                  </div>
+                  <div class="form-check pointer">
+                    <input class="form-check-input pointer" type="radio" name="gender" value="female" id="genderFemale">
+                    <label class="form-check-label pointer" for="genderFemale">
+                      Female
+                    </label>
+                  </div>
+                  <div class="form-check pointer">
+                    <input class="form-check-input pointer" type="radio" name="gender" value="male" id="genderMale">
+                    <label class="form-check-label pointer" for="genderMale">
+                      Male
+                    </label>
+                  </div>
+                </div>
+              </div>
             </div>
-            <div class="form-check pointer">
-              <input class="form-check-input pointer" type="radio" name="gender" value="female" id="genderFemale">
-              <label class="form-check-label pointer" for="genderFemale">
-                Female
-              </label>
+
+            <!-- Ethnicity -->
+            <div class="accordion-item">
+              <h2 class="accordion-header" id="flush-headingTwo">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                  data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo">
+                  Ethnicity
+                </button>
+              </h2>
+              <div id="flush-collapseTwo" class="accordion-collapse collapse" aria-labelledby="flush-headingTwo"
+                data-bs-parent="#accordionFilters">
+                <div class="accordion-body">
+                  <div class="form-check pointer">
+                    <input checked class="form-check-input pointer" type="radio" value="" name="ethnicity"
+                      id="ethnicityAll">
+                    <label class="form-check-label pointer" for="ethnicityAll">
+                      All
+                    </label>
+                  </div>
+                  <div class="form-check pointer">
+                    <input class="form-check-input pointer" type="radio" name="ethnicity" value="white"
+                      id="ethnicityWhite">
+                    <label class="form-check-label pointer" for="ethnicityWhite">
+                      White
+                    </label>
+                  </div>
+                  <div class="form-check pointer">
+                    <input class="form-check-input pointer" type="radio" name="ethnicity" value="black"
+                      id="ethnicityBlack">
+                    <label class="form-check-label pointer" for="ethnicityBlack">
+                      Black
+                    </label>
+                  </div>
+                  <div class="form-check pointer">
+                    <input class="form-check-input pointer" type="radio" name="ethnicity" value="asian"
+                      id="ethnicityAsian">
+                    <label class="form-check-label pointer" for="ethnicityAsian">
+                      Asian
+                    </label>
+                  </div>
+                  <div class="form-check pointer">
+                    <input class="form-check-input pointer" type="radio" name="ethnicity" value="latino"
+                      id="ethnicityLatino">
+                    <label class="form-check-label pointer" for="ethnicityLatino">
+                      Latino
+                    </label>
+                  </div>
+                </div>
+              </div>
             </div>
-            <div class="form-check pointer">
-              <input class="form-check-input pointer" type="radio" name="gender" value="male" id="genderMale">
-              <label class="form-check-label pointer" for="genderMale">
-                Male
-              </label>
+
+            <!-- Age -->
+            <div class="accordion-item">
+              <h2 class="accordion-header" id="flush-headingThree">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                  data-bs-target="#flush-collapseThree" aria-expanded="false" aria-controls="flush-collapseThree">
+                  Age
+                </button>
+              </h2>
+              <div id="flush-collapseThree" class="accordion-collapse collapse" aria-labelledby="flush-headingThree"
+                data-bs-parent="#accordionFilters">
+                <div class="accordion-body">
+                  <div class="form-check pointer">
+                    <input checked class="form-check-input pointer" type="radio" name="age" value="" id="ageAll">
+                    <label class="form-check-label pointer" for="ageAll">
+                      All
+                    </label>
+                  </div>
+                  <div class="form-check pointer">
+                    <input class="form-check-input pointer" type="radio" name="age" value="infant" id="ageInfant">
+                    <label class="form-check-label pointer" for="ageInfant">
+                      Infant
+                    </label>
+                  </div>
+                  <div class="form-check pointer">
+                    <input class="form-check-input pointer" type="radio" name="age" value="child" id="ageChild">
+                    <label class="form-check-label pointer" for="ageChild">
+                      Child
+                    </label>
+                  </div>
+                  <div class="form-check pointer">
+                    <input class="form-check-input pointer" type="radio" name="age" value="young-adult"
+                      id="ageYoungAdult">
+                    <label class="form-check-label pointer" for="ageYoungAdult">
+                      Young adult
+                    </label>
+                  </div>
+                  <div class="form-check pointer">
+                    <input class="form-check-input pointer" type="radio" name="age" value="adult" id="ageAdult">
+                    <label class="form-check-label pointer" for="ageAdult">
+                      Adult
+                    </label>
+                  </div>
+                  <div class="form-check pointer">
+                    <input class="form-check-input pointer" type="radio" name="age" value="elderly" id="ageElderly">
+                    <label class="form-check-label pointer" for="ageElderly">
+                      Elderly
+                    </label>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Emotion -->
+            <div class="accordion-item">
+              <h2 class="accordion-header" id="flush-headingEmotion">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                  data-bs-target="#flush-collapseEmotion" aria-expanded="false" aria-controls="flush-collapseEmotion">
+                  Emotion
+                </button>
+              </h2>
+              <div id="flush-collapseEmotion" class="accordion-collapse collapse" aria-labelledby="flush-headingEmotion"
+                data-bs-parent="#accordionFilters">
+                <div class="accordion-body">
+                  <div class="form-check pointer">
+                    <input checked class="form-check-input pointer" type="radio" name="emotion" value=""
+                      id="emotionAll">
+                    <label class="form-check-label pointer" for="emotionAll">
+                      All
+                    </label>
+                  </div>
+                  <div class="form-check pointer">
+                    <input class="form-check-input pointer" type="radio" name="emotion" value="joy" id="emotionJoy">
+                    <label class="form-check-label pointer" for="emotionJoy">
+                      Joy
+                    </label>
+                  </div>
+
+                  <div class="form-check pointer">
+                    <input class="form-check-input pointer" type="radio" name="emotion" value="neutral"
+                      id="emotionNeutral">
+                    <label class="form-check-label pointer" for="emotionNeutral">
+                      Neutral
+                    </label>
+                  </div>
+
+                  <div class="form-check pointer">
+                    <input class="form-check-input pointer" type="radio" name="emotion" value="surprise"
+                      id="emotionSurprise">
+                    <label class="form-check-label pointer" for="emotionSurprise">
+                      Surprise
+                    </label>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+
+            <div class="accordion-item">
+              <h2 class="accordion-header" id="flush-headingHairLength">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                  data-bs-target="#flush-collapseHairLength" aria-expanded="false"
+                  aria-controls="flush-collapseHairLength">
+                  Emotion
+                </button>
+              </h2>
+              <div id="flush-collapseHairLength" class="accordion-collapse collapse"
+                aria-labelledby="flush-headingHairLength" data-bs-parent="#accordionFilters">
+                <div class="accordion-body">
+                  <div class="form-check pointer">
+                    <input checked class="form-check-input pointer" type="radio" name="hairLength" value=""
+                      id="hairLengthAll">
+                    <label class="form-check-label pointer" for="hairLengthAll">
+                      All
+                    </label>
+                  </div>
+                  <div class="form-check pointer">
+                    <input class="form-check-input pointer" type="radio" name="hairLength" value="short"
+                      id="hairLengthShort">
+                    <label class="form-check-label pointer" for="hairLengthShort">
+                      Short
+                    </label>
+                  </div>
+                  <div class="form-check pointer">
+                    <input class="form-check-input pointer" type="radio" name="hairLength" value="medium"
+                      id="hairLengthMedium">
+                    <label class="form-check-label pointer" for="hairLengthMedium">
+                      Medium
+                    </label>
+                  </div>
+                  <div class="form-check pointer">
+                    <input class="form-check-input pointer" type="radio" name="hairLength" value="long"
+                      id="hairLengthLong">
+                    <label class="form-check-label pointer" for="hairLengthLong">
+                      Long
+                    </label>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
+
+          <button type="button" id="btnFetch" onclick="dummyFaces();" class="btn btn-primary w-100 mb-3"
+            data-mdb-ripple-color="dark">
+            Generate data
+          </button>
+
+          <button type="button" id="btnDownload" style="display: none;" class="btn btn-secondary w-100 mb-3"
+            data-mdb-ripple-color="dark">
+            Download generated data
+          </button>
         </div>
 
-        <!-- Ethnicity -->
-        <div class="card shadowed mb-3">
-          <div class="card-body">
-            <h5 class="card-title mb-3">Ethnicity</h5>
+        <div class="col-md-9">
+          <div id="progress" style="display: none;">
+            <h6 class="page-subtitle">Generating data.....</h6>
 
-            <div class="form-check pointer">
-              <input checked class="form-check-input pointer" type="radio" value="" name="ethnicity" id="ethnicityAll">
-              <label class="form-check-label pointer" for="ethnicityAll">
-                All
-              </label>
-            </div>
-            <div class="form-check pointer">
-              <input class="form-check-input pointer" type="radio" name="ethnicity" value="white" id="ethnicityWhite">
-              <label class="form-check-label pointer" for="ethnicityWhite">
-                White
-              </label>
-            </div>
+            <div class="progress">
+                <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="100" aria-valuemin="-10" aria-valuemax="100" style="width: 100%">
+                </div>
+            </div>     
+         </div>
+          <div id="result" class="row gallery shadowed pt-3" style="display: none;">
 
-            <div class="form-check pointer">
-              <input class="form-check-input pointer" type="radio" name="ethnicity" value="black" id="ethnicityBlack">
-              <label class="form-check-label pointer" for="ethnicityBlack">
-                Black
-              </label>
-            </div>
-
-            <div class="form-check pointer">
-              <input class="form-check-input pointer" type="radio" name="ethnicity" value="asian" id="ethnicityAsian">
-              <label class="form-check-label pointer" for="ethnicityAsian">
-                Asian
-              </label>
-            </div>
-
-            <div class="form-check pointer">
-              <input class="form-check-input pointer" type="radio" name="ethnicity" value="latino" id="ethnicityLatino">
-              <label class="form-check-label pointer" for="ethnicityLatino">
-                Latino
-              </label>
-            </div>
           </div>
         </div>
-
-        <!-- Age -->
-        <div class="card shadowed mb-3">
-          <div class="card-body">
-            <h5 class="card-title mb-3">Idade</h5>
-
-            <div class="form-check pointer">
-              <input checked class="form-check-input pointer" type="radio" name="age" value="" id="ageAll">
-              <label class="form-check-label pointer" for="ageAll">
-                All
-              </label>
-            </div>
-            <div class="form-check pointer">
-              <input class="form-check-input pointer" type="radio" name="age" value="infant" id="ageInfant">
-              <label class="form-check-label pointer" for="ageInfant">
-                Infant
-              </label>
-            </div>
-
-            <div class="form-check pointer">
-              <input class="form-check-input pointer" type="radio" name="age" value="child" id="ageChild">
-              <label class="form-check-label pointer" for="ageChild">
-                Child
-              </label>
-            </div>
-
-            <div class="form-check pointer">
-              <input class="form-check-input pointer" type="radio" name="age" value="young-adult" id="ageYoungAdult">
-              <label class="form-check-label pointer" for="ageYoungAdult">
-                Young adult
-              </label>
-            </div>
-
-            <div class="form-check pointer">
-              <input class="form-check-input pointer" type="radio" name="age" value="adult" id="ageAdult">
-              <label class="form-check-label pointer" for="ageAdult">
-                Adult
-              </label>
-            </div>
-
-            <div class="form-check pointer">
-              <input class="form-check-input pointer" type="radio" name="age" value="elderly" id="ageElderly">
-              <label class="form-check-label pointer" for="ageElderly">
-                Elderly
-              </label>
-            </div>
-          </div>
-        </div>
-
-        <!-- Hair Length -->
-        <div class="card shadowed mb-3">
-          <div class="card-body">
-            <h5 class="card-title mb-3">Hair Length</h5>
-
-            <div class="form-check pointer">
-              <input checked class="form-check-input pointer" type="radio" name="hairLength" value=""
-                id="hairLengthAll">
-              <label class="form-check-label pointer" for="hairLengthAll">
-                All
-              </label>
-            </div>
-            <div class="form-check pointer">
-              <input class="form-check-input pointer" type="radio" name="hairLength" value="short" id="hairLengthShort">
-              <label class="form-check-label pointer" for="hairLengthShort">
-                Short
-              </label>
-            </div>
-
-            <div class="form-check pointer">
-              <input class="form-check-input pointer" type="radio" name="hairLength" value="medium"
-                id="hairLengthMedium">
-              <label class="form-check-label pointer" for="hairLengthMedium">
-                Medium
-              </label>
-            </div>
-
-            <div class="form-check pointer">
-              <input class="form-check-input pointer" type="radio" name="hairLength" value="long" id="hairLengthLong">
-              <label class="form-check-label pointer" for="hairLengthLong">
-                Long
-              </label>
-            </div>
-          </div>
-        </div>
-
-        <!-- Emotion -->
-        <div class="card shadowed mb-3">
-          <div class="card-body">
-            <h5 class="card-title mb-3">Emoção</h5>
-
-            <div class="form-check pointer">
-              <input checked class="form-check-input pointer" type="radio" name="emotion" value="" id="emotionAll">
-              <label class="form-check-label pointer" for="emotionAll">
-                All
-              </label>
-            </div>
-            <div class="form-check pointer">
-              <input class="form-check-input pointer" type="radio" name="emotion" value="joy" id="emotionJoy">
-              <label class="form-check-label pointer" for="emotionJoy">
-                Joy
-              </label>
-            </div>
-
-            <div class="form-check pointer">
-              <input class="form-check-input pointer" type="radio" name="emotion" value="neutral" id="emotionNeutral">
-              <label class="form-check-label pointer" for="emotionNeutral">
-                Neutral
-              </label>
-            </div>
-
-            <div class="form-check pointer">
-              <input class="form-check-input pointer" type="radio" name="emotion" value="surprise" id="emotionSurprise">
-              <label class="form-check-label pointer" for="emotionSurprise">
-                Surprise
-              </label>
-            </div>
-          </div>
-        </div>
-
-        <button type="button" id="btnFetch" onclick="dummyFaces();" class="btn btn-primary w-100 mb-3"
-          data-mdb-ripple-color="dark">
-          Generate data
-        </button>
       </div>
-
-      <div class="col-md-9">
-        <div id="result" class="row g-2 gallery">
-
-        </div>
-      </div>
-
+  
   </section>
 
   <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
