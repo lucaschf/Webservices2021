@@ -4,6 +4,7 @@ var longitude;
 function fetchData() {
 
   inProgress(true);
+
   let photoGeneratorUrl = "https://api.generated.photos/api/v1/faces?api_key=d1776Wt1UAhyMCPOjlIO0w&per_page=10"
   var gender = $('input[name=gender]:checked').val();
   var ethnicity = $('input[name=ethnicity]:checked').val();
@@ -41,17 +42,16 @@ function fetchData() {
   inProgress(false);
 }
 
-
-function generateCard(pic){
+function generateCard(pic) {
   let key = "51566a40";
   let dataUrl = "https://my.api.mockaroo.com/person_generation_schema/";
 
   var gender = pic.meta.gender[0];
   var age = pic.meta.age[0];
 
-  dataUrl+=(gender);
-  dataUrl+="/" + age;
-  dataUrl+=("?key=" + key);
+  dataUrl += (gender);
+  dataUrl += "/" + age;
+  dataUrl += ("?key=" + key);
 
   console.log(dataUrl);
 
@@ -68,10 +68,12 @@ function generateCard(pic){
 
         $.each(data, function (index, el) {
           el.picture = pic.urls;
+          el.ethnicity = meta.ethnicity[0];
 
           var cardContainer = document.createElement("div");
-          cardContainer.classList.add("col-md-3");
+          cardContainer.classList.add("col-md-4");
           cardContainer.classList.add("col-lg-3");
+          cardContainer.classList.add("col-auto");
           cardContainer.classList.add("col-sm-2");
 
           var card = document.createElement("div");
@@ -97,8 +99,6 @@ function generateCard(pic){
           card.appendChild(cardBody);
           cardContainer.appendChild(card);
           container.appendChild(cardContainer);
-
-          card.onclick=new Function("alert('oi from " + el.first_name + "')");
         });
       } catch (e) {
         alert(e);
@@ -113,45 +113,73 @@ function generateCard(pic){
   });
 }
 
-String.prototype.isNullOrEmpty = function() {
+String.prototype.isNullOrEmpty = function () {
   return (this.length === 0 || !this.trim());
 };
 
-function showPersonDetails(person) {
-  var table = $("<table class='table'><tr><th></th></tr>");
+function generateRow(name, data) {
+  var tr = document.createElement('TR');
 
-  table.append("<tr><th>Nome</th><td>" + person.first_name + " " + person.last_name + "</td></tr>");
-  table.append("<tr><th>Idade</th><td>" + person.age + "</td></tr>");
-  table.append("<tr<th>Genero</th><td>" + person.gender + "</td></tr>");
-  table.append("<tr<th>Comprimento do cabelo</th><td>" + person.hair_length + "</td></tr>");
-  table.append("<tr<th>Idioma</th><td>" + person.language + "</td></tr>");
-  table.append("<tr><th>E-mail</th><td>" + person.email + "</td></tr>");
-  table.append("<tr><th>Emoção</th><td>" + person.emotion + "</td></tr>");
-  table.append("<tr><th>hair_color</th><td>" + person.hair_color + "</td></tr>");
-  table.append("<tr><th>Etnia</th><td>" + person.ethnicity + "</td></tr>");
-  table.append("<tr><th>Universidade</th><td>" + person.university + "</td></tr>");
-  table.append("<tr><th>Empresa</th><td>" + person.company + "</td></tr>");
-  table.append("<tr><th>Departamento</th><td>" + person.departament + "</td></tr>");
-  table.append("<tr><th>Buzzword</th><td>" + person.buzzword + "</td></tr>");
-  table.append("<tr><th>JobTitle</th><td>" + person.job_title + "</td></tr>");
-  table.append("<tr><th>Titulo</th><td>" + person.title + "</td></tr>");
+  var th = document.createElement('th');
+  th.appendChild(document.createTextNode(name));
+  tr.appendChild(th);
 
-  var container = document.querySelector("#personContent");
-  container.appendChild(table)
+  var td = document.createElement('TD');
+  td.appendChild(document.createTextNode(data));
+  tr.appendChild(td);
 
-  var image = document.querySelector("#personPicture")
-  image.src = person.picture;
+  return tr;
 }
 
-function showModal() {
-  var image = document.querySelector("#personPicture")
-  image.src = "https://images.generated.photos/5wh575MvTYRK8WLlYCjMORzHXVRaRfJQ3sQsAShLlDg/rs:fit:256:256/Z3M6Ly9nZW5lcmF0/ZWQtcGhvdG9zLzA5/OTk5MTcuanBn.jpg"
-  $("#staticBackdrop").modal("show");
+function showPersonDetails(person) {
+    
+  var table = document.createElement('TABLE');
+  table.classList.add("table");
+  table.classList.add("table-responsive");
+
+  var tableBody = document.createElement('TBODY');
+  table.appendChild(tableBody);
+
+  tableBody.appendChild(generateRow("Gender", person.gender));
+  tableBody.appendChild(generateRow("Language", person.language));
+  tableBody.appendChild(generateRow("Title", person.title));
+  tableBody.appendChild(generateRow("Age", person.age));
+  tableBody.appendChild(generateRow("Ethnicity", person.ethnicity));
+
+  tableBody.appendChild(generateRow("Phone", person.phone));
+  tableBody.appendChild(generateRow("E-mail", person.email));
+
+  tableBody.appendChild(generateRow("Job", person.professional_info.title));
+  tableBody.appendChild(generateRow("Department", person.professional_info.department));
+  tableBody.appendChild(generateRow("Company", person.professional_info.company_name));
+  tableBody.appendChild(generateRow("Buzzword", person.professional_info.buzzword));
+  tableBody.appendChild(generateRow("Company slogan", person.professional_info.slogan));
+
+  tableBody.appendChild(generateRow("Country", person.location.country));
+  tableBody.appendChild(generateRow("Country code", person.location.country_code));
+  tableBody.appendChild(generateRow("State", person.location.state));
+  tableBody.appendChild(generateRow("City", person.location.city_name));
+  tableBody.appendChild(generateRow("Postal code", person.location.postal_code));
+  tableBody.appendChild(generateRow("Address", person.location.street_address));
+  tableBody.appendChild(generateRow("Time Zone", person.location.time_zone));
+
+  
+  var container = document.querySelector("#personContent");
+  container.innerHTML = "";
+  container.appendChild(table);
+  
+  document.querySelector("#personName").innerHTML = (person.name.first_name + " " + person.name.last_name);
+  document.querySelector("#personPicture").src = person.pictures[4]["512"];
+  $("#pictureUrl").attr("href", person.pictures[4]["512"]);
+
+  initMap(person.location.latitude, person.location.longitude, person.name.first_name);
+  
+  $("#persomModal").modal("show");
 }
 
 function inProgress(inProgress) {
   if (inProgress) {
-    $("#result").html('');
+    $("#result").innerHTML = '';
     $("#progress").show();
     $("#btnFetch").hide();
   }
@@ -161,56 +189,19 @@ function inProgress(inProgress) {
   }
 }
 
-function dummyPerson(pic) {   
-  var container = document.querySelector("#result");
+let map;
 
-  var gender = pic.meta.gender[0];
-  var age = pic.meta.age[0];
+function initMap(latitude, longitude, title) {
 
-  $.getJSON( "https://raw.githubusercontent.com/lucaschf/Webservices2021/main/PersonDataGenerator/dummy_person.json", function( data ) {
-    $.each(data, function (index, el) {
-      el.pictures = pic.urls;
-
-      var cardContainer = document.createElement("div");
-      cardContainer.classList.add("col-md-3");
-      cardContainer.classList.add("col-lg-3");
-      cardContainer.classList.add("col-sm-2");
-
-      var card = document.createElement("div");
-      card.classList.add("card");
-      card.classList.add("pointer");
-      card.classList.add("zoom");
-      card.classList.add("shadowed");
-      card.classList.add("mb-3");
-
-      var image = document.createElement("img");
-      image.classList.add("card-img-top");
-      image.src = el.pictures[4]["512"];
-
-      var cardBody = document.createElement("div");
-      cardBody.classList.add("card-body");
-
-      var cardTitle = document.createElement("h5");
-      cardTitle.classList.add("card-title");
-      cardTitle.textContent = el.name.first_name + " " + el.name.last_name;
-
-      cardBody.append(cardTitle);
-      card.appendChild(image);
-      card.appendChild(cardBody);
-      cardContainer.appendChild(card);
-      container.appendChild(cardContainer);
-
-      card.onclick=new Function("alert('oi from " + el.first_name + "')");
-    }); 
+  map = new google.maps.Map(document.getElementById("map"), {
+    center: { lat: Number(latitude), lng: Number(longitude) },
+    zoom: 8,
   });
-}
 
-function dummyFaces() {   
-  $.getJSON( "https://raw.githubusercontent.com/lucaschf/Webservices2021/main/PersonDataGenerator/dummy_faces.json", function( data ) {
-    $.each( data.faces, function( key, el ) {
-      // console.log( el.urls[4]["512"]);
-
-      dummyPerson(el);
-    });
+  let coord = new google.maps.LatLng(latitude, longitude);
+  marker = new google.maps.Marker({
+    position: coord, 
+    map: map,
+    title: title
   });
 }

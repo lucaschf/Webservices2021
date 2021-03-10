@@ -58,5 +58,65 @@
             "street_address": "32 Carioca Road",
             "time_zone": "America/Chicago"
         }
+    },
+    {
+        "email": "kmoxsom0@newyorker.com",
+        "gender": "female",
+        "language": "Pashto",
+        "title": "Rev",
+        "phone": "long",
+        "age": "young-adult",
+        "name": {
+            "first_name": "Katleen",
+            "last_name": "Clowley"
+        },
+        "professional_info": {
+            "title": "Web Developer I",
+            "company_name": "Abata",
+            "buzzword": "help-desk",
+            "department": "Engineering",
+            "slogan": "utilize bleeding-edge interfaces"
+        },
+        "location": {
+            "city_name": "Washington",
+            "country": "United States",
+            "country_code": "US",
+            "latitude": 38.8933,
+            "longitude": -77.0146,
+            "postal_code": "20599",
+            "state": "District of Columbia",
+            "street_address": "06 Onsgard Avenue",
+            "time_zone": "America/New_York"
+        }
+    },
+    {
+        "email": "dbarrott1@unicef.org",
+        "gender": "female",
+        "language": "Irish Gaelic",
+        "title": "Rev",
+        "phone": "long",
+        "age": "young-adult",
+        "name": {
+            "first_name": "Shayne",
+            "last_name": "Bowmer"
+        },
+        "professional_info": {
+            "title": "Data Coordiator",
+            "company_name": "Centizu",
+            "buzzword": "intangible",
+            "department": "Sales",
+            "slogan": "reintermediate transparent convergence"
+        },
+        "location": {
+            "city_name": "North Las Vegas",
+            "country": "United States",
+            "country_code": "US",
+            "latitude": 36.2204,
+            "longitude": -115.1458,
+            "postal_code": "89087",
+            "state": "Nevada",
+            "street_address": "4 Blackbird Trail",
+            "time_zone": "America/Los_Angeles"
+        }
     }
 ]

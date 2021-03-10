@@ -98,13 +98,12 @@ hr{
 .btn{
     height: 48px !important;
 }
-/* 
-.filters{
-    height:70vh !important;
-    overflow-y: scroll !important;
+
+td, tr, th {
+    text-transform: capitalize;
 }
 
-.gallery{
-    height:70vh;
-    overflow-y: scroll;
-} */
+.map{
+	width: 100%; 
+	min-height: 150px;
+}
