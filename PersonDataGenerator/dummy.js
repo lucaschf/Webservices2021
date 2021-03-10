@@ -52,8 +52,6 @@ function dummyFaces() {
 
   $.getJSON("https://raw.githubusercontent.com/lucaschf/Webservices2021/main/PersonDataGenerator/dummy_faces.json", function (data) {
     $.each(data.faces, function (key, el) {
-      // console.log( el.urls[4]["512"]);
-
       dummyPerson(el);
     });
 

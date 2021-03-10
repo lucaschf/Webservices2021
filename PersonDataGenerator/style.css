@@ -104,7 +104,8 @@ td, tr, th {
 }
 
 .gallery {
-    height:75vh;
+    height:85vh;
+    max-height: 90vh;
     border: none !important;
     overflow-y: auto;
 } 

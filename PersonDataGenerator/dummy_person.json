@@ -1,32 +1,30 @@
-[
-    {
-        "email": "mubsdell0@quantcast.com",
-        "gender": "female",
-        "language": "Kannada",
-        "title": "Honorable",
-        "phone": "short",
-        "age": "young-adult",
-        "name": {
-            "first_name": "Cordy",
-            "last_name": "Beekmann"
-        },
-        "professional_info": {
-            "title": "Recruiter",
-            "company_name": "Aivee",
-            "buzzword": "Re-engineered",
-            "department": "Support",
-            "slogan": "engineer 24/365 channels"
-        },
-        "location": {
-            "city_name": "Washington",
-            "country": "United States",
-            "country_code": "US",
-            "latitude": 38.9,
-            "longitude": -77.0369,
-            "postal_code": "20062",
-            "state": "District of Columbia",
-            "street_address": "0 Lake View Junction",
-            "time_zone": "America/New_York"
-        }
+{
+    "email": "mubsdell0@quantcast.com",
+    "gender": "female",
+    "language": "Kannada",
+    "title": "Honorable",
+    "phone": "short",
+    "age": "young-adult",
+    "name": {
+        "first_name": "Cordy",
+        "last_name": "Beekmann"
+    },
+    "professional_info": {
+        "title": "Recruiter",
+        "company_name": "Aivee",
+        "buzzword": "Re-engineered",
+        "department": "Support",
+        "slogan": "engineer 24/365 channels"
+    },
+    "location": {
+        "city_name": "Washington",
+        "country": "United States",
+        "country_code": "US",
+        "latitude": 38.9,
+        "longitude": -77.0369,
+        "postal_code": "20062",
+        "state": "District of Columbia",
+        "street_address": "0 Lake View Junction",
+        "time_zone": "America/New_York"
     }
-]
+}
