@@ -103,7 +103,22 @@ td, tr, th {
     text-transform: capitalize;
 }
 
+
+.filters{
+    max-height:70vh !important;
+    overflow-y: scroll !important;
+}
+
+
+.gallery{
+    max-height:90vh;
+    border: none !important;
+    overflow-y: scroll;
+} 
+
+
 .map{
+
 	width: 100%; 
 	min-height: 150px;
 }
