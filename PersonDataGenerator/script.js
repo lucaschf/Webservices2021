@@ -1,11 +1,13 @@
 var latitude;
 var longitude;
 
+let generated_photos_key = "d1776Wt1UAhyMCPOjlIO0w";
+
 function fetchData() {
 
   inProgress(true);
 
-  let photoGeneratorUrl = "https://api.generated.photos/api/v1/faces?api_key=d1776Wt1UAhyMCPOjlIO0w&per_page=10"
+  let photoGeneratorUrl = "https://api.generated.photos/api/v1/faces?per_page=10&api_key=" + generated_photos_key;
   var gender = $('input[name=gender]:checked').val();
   var ethnicity = $('input[name=ethnicity]:checked').val();
   var age = $('input[name=age]:checked').val();
@@ -13,15 +15,15 @@ function fetchData() {
   var emotion = $('input[name=emotion]:checked').val();
 
   if (!age.isNullOrEmpty())
-    photoGeneratorUrl.append("&age=" + age);
+    photoGeneratorUrl+=("&age=" + age);
   if (!gender.isNullOrEmpty())
-    photoGeneratorUrl.append("&gender=" + gender);
+    photoGeneratorUrl+=("&gender=" + gender);
   if (!ethnicity.isNullOrEmpty())
-    photoGeneratorUrl.append("&ethnicity=" + ethnicity);
+    photoGeneratorUrl+=("&ethnicity=" + ethnicity);
   if (!hairLength.isNullOrEmpty())
-    photoGeneratorUrl.append("&hairLength=" + hairLength);
+    photoGeneratorUrl+=("&hairLength=" + hairLength);
   if (!emotion.isNullOrEmpty())
-    photoGeneratorUrl.append("&emotion=" + emotion);
+    photoGeneratorUrl+=("&emotion=" + emotion);
 
   $.ajax({
     type: 'GET',
@@ -43,7 +45,7 @@ function fetchData() {
 }
 
 function generateCard(pic) {
-  let key = "51566a40";
+  let key = "16d6e890";
   let dataUrl = "https://my.api.mockaroo.com/person_generation_schema/";
 
   var gender = pic.meta.gender[0];
@@ -66,42 +68,46 @@ function generateCard(pic) {
         data = $.parseJSON(JSON.stringify(response));
         var container = document.querySelector("#result");
 
-        $.each(data, function (index, el) {
-          el.picture = pic.urls;
-          el.ethnicity = meta.ethnicity[0];
+        data.pictures = pic.urls;
+        data.ethnicity = pic.meta.ethnicity[0];
+        data.age = age;
+        data.gender = gender;
 
-          var cardContainer = document.createElement("div");
-          cardContainer.classList.add("col-md-4");
-          cardContainer.classList.add("col-lg-3");
-          cardContainer.classList.add("col-auto");
-          cardContainer.classList.add("col-sm-2");
+        var cardContainer = document.createElement("div");
+        cardContainer.classList.add("col-md-3");
+        cardContainer.classList.add("col-lg-3");
+        cardContainer.classList.add("col-sm-2");
 
-          var card = document.createElement("div");
-          card.classList.add("card");
-          card.classList.add("pointer");
-          card.classList.add("zoom");
-          card.classList.add("shadowed");
-          card.classList.add("mb-3");
+        var card = document.createElement("div");
+        card.classList.add("card");
+        card.classList.add("pointer");
+        card.classList.add("zoom");
+        card.classList.add("shadowed");
+        card.classList.add("mb-3");
 
-          var image = document.createElement("img");
-          image.classList.add("card-img-top");
-          image.src = el.picture;
+        var image = document.createElement("img");
+        image.classList.add("card-img-top");
+        image.src = data.pictures[4]["512"];
 
-          var cardBody = document.createElement("div");
-          cardBody.classList.add("card-body");
+        var cardBody = document.createElement("div");
+        cardBody.classList.add("card-body");
 
-          var cardTitle = document.createElement("h5");
-          cardTitle.classList.add("card-title");
-          cardTitle.textContent = el.name.first_name + " " + el.name.last_name;
+        var cardTitle = document.createElement("h5");
+        cardTitle.classList.add("card-title");
+        cardTitle.textContent = data.name.first_name + " " + data.name.last_name;
 
-          cardBody.append(cardTitle);
-          card.appendChild(image);
-          card.appendChild(cardBody);
-          cardContainer.appendChild(card);
-          container.appendChild(cardContainer);
-        });
+        cardBody.append(cardTitle);
+        card.appendChild(image);
+        card.appendChild(cardBody);
+        cardContainer.appendChild(card);
+        container.appendChild(cardContainer);
+
+        card.onclick = function () {
+          showPersonDetails(data);
+        }
+
       } catch (e) {
-        alert(e);
+        console.log(e);
         data = null;
       }
 
@@ -132,7 +138,7 @@ function generateRow(name, data) {
 }
 
 function showPersonDetails(person) {
-    
+
   var table = document.createElement('TABLE');
   table.classList.add("table");
   table.classList.add("table-responsive");
@@ -163,17 +169,17 @@ function showPersonDetails(person) {
   tableBody.appendChild(generateRow("Address", person.location.street_address));
   tableBody.appendChild(generateRow("Time Zone", person.location.time_zone));
 
-  
+
   var container = document.querySelector("#personContent");
   container.innerHTML = "";
   container.appendChild(table);
-  
+
   document.querySelector("#personName").innerHTML = (person.name.first_name + " " + person.name.last_name);
   document.querySelector("#personPicture").src = person.pictures[4]["512"];
   $("#pictureUrl").attr("href", person.pictures[4]["512"]);
 
   initMap(person.location.latitude, person.location.longitude, person.name.first_name);
-  
+
   $("#persomModal").modal("show");
 }
 
@@ -206,26 +212,26 @@ function initMap(latitude, longitude, title) {
 
   let coord = new google.maps.LatLng(latitude, longitude);
   marker = new google.maps.Marker({
-    position: coord, 
+    position: coord,
     map: map,
     title: title
   });
 }
 
 function download(data, filename, type) {
-  var file = new Blob([data], {type: type});
+  var file = new Blob([data], { type: type });
   if (window.navigator.msSaveOrOpenBlob) // IE10+
-      window.navigator.msSaveOrOpenBlob(file, filename);
+    window.navigator.msSaveOrOpenBlob(file, filename);
   else { // Others
-      var a = document.createElement("a"),
-              url = URL.createObjectURL(file);
-      a.href = url;
-      a.download = filename;
-      document.body.appendChild(a);
-      a.click();
-      setTimeout(function() {
-          document.body.removeChild(a);
-          window.URL.revokeObjectURL(url);  
-      }, 0); 
+    var a = document.createElement("a"),
+      url = URL.createObjectURL(file);
+    a.href = url;
+    a.download = filename;
+    document.body.appendChild(a);
+    a.click();
+    setTimeout(function () {
+      document.body.removeChild(a);
+      window.URL.revokeObjectURL(url);
+    }, 0);
   }
 }

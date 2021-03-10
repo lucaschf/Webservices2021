@@ -1,6 +1,6 @@
-# SimpleWeatherApiClient
+# SimpleDummyPersonGenerator
 
-A simple web app for consuming APIS using ajax. Practical work for the discipline of webservices of the course systems for internet 2021.
+A simple web app for generating dummy person data with face picture. Practical work for the discipline of webservices of the course systems for internet 2021.
 
 ## Getting Started
 
@@ -8,7 +8,7 @@ These instructions will get you a copy of the project up and running on your loc
 
 What things you need 
 
-Open weather Current Weather Data Api key available here: <https://openweathermap.org/api>
+Generated.photos Api key available here: https://generated.photos/api
 
 Google Maps api key available here: https://developers.google.com/maps/apis-by-platform
 
