@@ -1,61 +1,68 @@
-var latitude;
-var longitude;
-
 let generated_photos_key = "d1776Wt1UAhyMCPOjlIO0w";
+var mock = [];
+
+function generatePhotosUrl() {
+  let photoGeneratorUrl = "https://api.generated.photos/api/v1/faces?per_page=10&api_key=" + generated_photos_key;
+  let gender = $('input[name=gender]:checked').val();
+  let ethnicity = $('input[name=ethnicity]:checked').val();
+  let age = $('input[name=age]:checked').val();
+  let hairLength = $('input[name=hairLength]:checked').val();
+  let emotion = $('input[name=emotion]:checked').val();
+
+  if (!age.isEmpty())
+    photoGeneratorUrl += ("&age=" + age);
+  if (!gender.isEmpty())
+    photoGeneratorUrl += ("&gender=" + gender);
+  if (!ethnicity.isEmpty())
+    photoGeneratorUrl += ("&ethnicity=" + ethnicity);
+  if (!hairLength.isEmpty())
+    photoGeneratorUrl += ("&hairLength=" + hairLength);
+  if (!emotion.isEmpty())
+    photoGeneratorUrl += ("&emotion=" + emotion);
+
+  return photoGeneratorUrl;
+}
 
 function fetchData() {
+  mock = [];
 
   inProgress(true);
-
-  let photoGeneratorUrl = "https://api.generated.photos/api/v1/faces?per_page=10&api_key=" + generated_photos_key;
-  var gender = $('input[name=gender]:checked').val();
-  var ethnicity = $('input[name=ethnicity]:checked').val();
-  var age = $('input[name=age]:checked').val();
-  var hairLength = $('input[name=hairLength]:checked').val();
-  var emotion = $('input[name=emotion]:checked').val();
-
-  if (!age.isNullOrEmpty())
-    photoGeneratorUrl+=("&age=" + age);
-  if (!gender.isNullOrEmpty())
-    photoGeneratorUrl+=("&gender=" + gender);
-  if (!ethnicity.isNullOrEmpty())
-    photoGeneratorUrl+=("&ethnicity=" + ethnicity);
-  if (!hairLength.isNullOrEmpty())
-    photoGeneratorUrl+=("&hairLength=" + hairLength);
-  if (!emotion.isNullOrEmpty())
-    photoGeneratorUrl+=("&emotion=" + emotion);
 
   $.ajax({
     type: 'GET',
     dataType: "json",
-    url: photoGeneratorUrl,
+    url: generatePhotosUrl(),
     success: function (response) {
       data = $.parseJSON(JSON.stringify(response));
+
+      document.getElementById("btnDownload").onclick = function () {
+        download(JSON.stringify(mock), "dummy.json", 'text/plain')
+      };
+
       $.each(data.faces, function (index, el) {
-        generateCard(el);
+        alert(generateCard(el));
       });
+      setTimeout(function () {
+        inProgress(false);
+      }, 500);
     },
     error: function (xhr, status, error) {
       inProgress(false);
-      alert("Result: " + status + " " + error + " " + xhr.status + " " + xhr.statusText)
+      showError("Result: " + status + " " + error + " " + xhr.status + " " + xhr.statusText)
     }
   });
-
-  inProgress(false);
 }
 
-function generateCard(pic) {
+function generateCard(face_data) {
   let key = "16d6e890";
   let dataUrl = "https://my.api.mockaroo.com/person_generation_schema/";
 
-  var gender = pic.meta.gender[0];
-  var age = pic.meta.age[0];
+  var gender = face_data.meta.gender[0];
+  var age = face_data.meta.age[0];
 
   dataUrl += (gender);
   dataUrl += "/" + age;
   dataUrl += ("?key=" + key);
-
-  console.log(dataUrl);
 
   $.ajax({
     type: 'GET',
@@ -68,10 +75,7 @@ function generateCard(pic) {
         data = $.parseJSON(JSON.stringify(response));
         var container = document.querySelector("#result");
 
-        data.pictures = pic.urls;
-        data.ethnicity = pic.meta.ethnicity[0];
-        data.age = age;
-        data.gender = gender;
+        data.face_data = face_data;
 
         var cardContainer = document.createElement("div");
         cardContainer.classList.add("col-md-3");
@@ -87,7 +91,7 @@ function generateCard(pic) {
 
         var image = document.createElement("img");
         image.classList.add("card-img-top");
-        image.src = data.pictures[4]["512"];
+        image.src = data.face_data.urls[4]["512"];
 
         var cardBody = document.createElement("div");
         cardBody.classList.add("card-body");
@@ -106,20 +110,19 @@ function generateCard(pic) {
           showPersonDetails(data);
         }
 
+        mock.push(data);
       } catch (e) {
         console.log(e);
-        data = null;
       }
-
-      inProgress(false);
     },
     error: function (xhr, status, error) {
-      console.log("Result: " + status + " " + error + " " + xhr.status + " " + xhr.statusText)
+      let message = status + " " + error + " " + xhr.status + " " + xhr.statusText;
+      console.log(message);
     }
   });
 }
 
-String.prototype.isNullOrEmpty = function () {
+String.prototype.isEmpty = function () {
   return (this.length === 0 || !this.trim());
 };
 
@@ -138,7 +141,6 @@ function generateRow(name, data) {
 }
 
 function showPersonDetails(person) {
-
   var table = document.createElement('TABLE');
   table.classList.add("table");
   table.classList.add("table-responsive");
@@ -146,21 +148,18 @@ function showPersonDetails(person) {
   var tableBody = document.createElement('TBODY');
   table.appendChild(tableBody);
 
-  tableBody.appendChild(generateRow("Gender", person.gender));
+  tableBody.appendChild(generateRow("Gender", person.face_data.meta.gender[0]));
   tableBody.appendChild(generateRow("Language", person.language));
   tableBody.appendChild(generateRow("Title", person.title));
   tableBody.appendChild(generateRow("Age", person.age));
-  tableBody.appendChild(generateRow("Ethnicity", person.ethnicity));
-
+  tableBody.appendChild(generateRow("Ethnicity", person.face_data.meta.ethnicity[0]));
   tableBody.appendChild(generateRow("Phone", person.phone));
   tableBody.appendChild(generateRow("E-mail", person.email));
-
-  tableBody.appendChild(generateRow("Job", person.professional_info.title));
+  tableBody.appendChild(generateRow("Occupation", person.professional_info.title));
   tableBody.appendChild(generateRow("Department", person.professional_info.department));
   tableBody.appendChild(generateRow("Company", person.professional_info.company_name));
   tableBody.appendChild(generateRow("Buzzword", person.professional_info.buzzword));
   tableBody.appendChild(generateRow("Company slogan", person.professional_info.slogan));
-
   tableBody.appendChild(generateRow("Country", person.location.country));
   tableBody.appendChild(generateRow("Country code", person.location.country_code));
   tableBody.appendChild(generateRow("State", person.location.state));
@@ -169,16 +168,19 @@ function showPersonDetails(person) {
   tableBody.appendChild(generateRow("Address", person.location.street_address));
   tableBody.appendChild(generateRow("Time Zone", person.location.time_zone));
 
-
   var container = document.querySelector("#personContent");
   container.innerHTML = "";
   container.appendChild(table);
 
   document.querySelector("#personName").innerHTML = (person.name.first_name + " " + person.name.last_name);
-  document.querySelector("#personPicture").src = person.pictures[4]["512"];
-  $("#pictureUrl").attr("href", person.pictures[4]["512"]);
+  document.querySelector("#personPicture").src = person.face_data.urls[4]["512"];
+  $("#pictureUrl").attr("href", person.face_data.urls[4]["512"]);
 
-  initMap(person.location.latitude, person.location.longitude, person.name.first_name);
+  initMap(
+    person.location.latitude,
+    person.location.longitude,
+    person.name.first_name
+  );
 
   $("#persomModal").modal("show");
 }
@@ -187,6 +189,7 @@ function inProgress(inProgress) {
   var dataContainer = $("#result");
 
   if (inProgress) {
+    toggleErrorVisibility(false);
     document.querySelector("#result").innerHTML = '';
     dataContainer.hide();
     $("#progress").show();
@@ -198,6 +201,23 @@ function inProgress(inProgress) {
     $("#btnFetch").show();
     $("#btnDownload").show();
     $("#progress").hide();
+  }
+}
+
+function showError(message) {
+  console.log(message);
+  toggleErrorVisibility(true);
+  $("$errorMessage").val(message)
+}
+
+function toggleErrorVisibility(visible) {
+  if (visible) {
+    $("#result").hide();
+    $("#error").show();
+    $("#btnDownload").hide();
+  } else {
+    $("#error").hide();
+    $("#result").show();
   }
 }
 

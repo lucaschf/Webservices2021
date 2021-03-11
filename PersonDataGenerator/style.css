@@ -126,3 +126,33 @@ td, tr, th {
 .accordion-button:not(.collapsed) {   
      background-color: #fff !important; 
 }
+
+
+/* error */
+
+.error_bg {
+    background-size: 75% 75%;
+    height: 55vh;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.server-error-bg {
+    background-image: url(assets/undraw_startled.svg);
+}
+
+.error_bg h1 {
+    font-size: 80px;
+}
+
+.error_bg h2 {
+    font-size: 80px;
+}
+
+.content-box-error {
+    margin-top: 20px;
+}
+
+.content-box-error a {
+    width: 200px;
+}

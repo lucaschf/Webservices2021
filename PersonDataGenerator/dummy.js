@@ -1,14 +1,11 @@
-function dummyPerson(pic) {
-  var container = document.querySelector("#result");
+var mock = [];
 
-  var gender = pic.meta.gender[0];
-  var age = pic.meta.age[0];
+function dummyPerson(face_data) {
+  let container = document.querySelector("#result");
+  let url = "https://raw.githubusercontent.com/lucaschf/Webservices2021/main/PersonDataGenerator/dummy_person.json";
 
-  $.getJSON("https://raw.githubusercontent.com/lucaschf/Webservices2021/main/PersonDataGenerator/dummy_person.json", function (data) {
-    data.pictures = pic.urls;
-    data.ethnicity = pic.meta.ethnicity[0];
-    data.age = age;
-    data.gender = gender;
+  $.getJSON(url, function (data) {
+    data.face_data = face_data;
 
     var cardContainer = document.createElement("div");
     cardContainer.classList.add("col-md-3");
@@ -24,7 +21,7 @@ function dummyPerson(pic) {
 
     var image = document.createElement("img");
     image.classList.add("card-img-top");
-    image.src = data.pictures[4]["512"];
+    image.src = data.face_data.urls[4]["512"];
 
     var cardBody = document.createElement("div");
     cardBody.classList.add("card-body");
@@ -39,6 +36,8 @@ function dummyPerson(pic) {
     cardContainer.appendChild(card);
     container.appendChild(cardContainer);
 
+    mock.push(data);
+
     card.onclick = function () {
       showPersonDetails(data);
     }
@@ -47,18 +46,19 @@ function dummyPerson(pic) {
 
 function dummy() {
   inProgress(true);
+  mock = [];
 
   $.getJSON("https://raw.githubusercontent.com/lucaschf/Webservices2021/main/PersonDataGenerator/dummy_faces.json", function (data) {
     $.each(data.faces, function (key, el) {
       dummyPerson(el);
     });
 
-    document.getElementById("btnDownload").onclick = function () { download(JSON.stringify(data), "dummy.json", 'text/plain') };
+    document.getElementById("btnDownload").onclick = function () {
+      download(JSON.stringify(mock), "dummy.json", 'text/plain')
+    };
   });
 
-
-  var millisecondsToWait = 500;
   setTimeout(function () {
     inProgress(false);
-  }, millisecondsToWait);
+  }, 500);
 }
