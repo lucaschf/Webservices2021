@@ -40,7 +40,7 @@ function fetchData() {
       };
 
       $.each(data.faces, function (index, el) {
-        alert(generateCard(el));
+        generateCard(el);
       });
       setTimeout(function () {
         inProgress(false);
@@ -48,7 +48,9 @@ function fetchData() {
     },
     error: function (xhr, status, error) {
       inProgress(false);
-      showError("Result: " + status + " " + error + " " + xhr.status + " " + xhr.statusText)
+      
+      var message = ( status + " " + error + " " + xhr.status + " " + xhr.statusText)
+      showError(message)
     }
   });
 }
@@ -206,8 +208,8 @@ function inProgress(inProgress) {
 
 function showError(message) {
   console.log(message);
+  document.querySelector("#errorMessage").textContent =   (message);
   toggleErrorVisibility(true);
-  $("$errorMessage").val(message)
 }
 
 function toggleErrorVisibility(visible) {
