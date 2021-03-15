@@ -104,6 +104,7 @@ td, tr, th {
 }
 
 .gallery {
+    min-height: 600px;
     height:85vh;
     max-height: 90vh;
     border: none !important;
@@ -136,6 +137,7 @@ td, tr, th {
     background-position: center;
     background-repeat: no-repeat;
 }
+
 
 .server-error-bg {
     background-image: url(assets/undraw_startled.svg);

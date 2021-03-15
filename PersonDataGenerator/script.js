@@ -1,4 +1,4 @@
-let generated_photos_key = "d1776Wt1UAhyMCPOjlIO0w";
+let generated_photos_key = "YOUR_KEY_HERE";
 var mock = [];
 
 function generatePhotosUrl() {
@@ -48,15 +48,15 @@ function fetchData() {
     },
     error: function (xhr, status, error) {
       inProgress(false);
-      
-      var message = ( status + " " + error + " " + xhr.status + " " + xhr.statusText)
+
+      var message = (status + " " + error + " " + xhr.status + " " + xhr.statusText)
       showError(message)
     }
   });
 }
 
 function generateCard(face_data) {
-  let key = "16d6e890";
+  let key = "8dc85790"; // mockaroo key for api needed
   let dataUrl = "https://my.api.mockaroo.com/person_generation_schema/";
 
   var gender = face_data.meta.gender[0];
@@ -190,6 +190,8 @@ function showPersonDetails(person) {
 function inProgress(inProgress) {
   var dataContainer = $("#result");
 
+  $("#tip").hide();
+
   if (inProgress) {
     toggleErrorVisibility(false);
     document.querySelector("#result").innerHTML = '';
@@ -208,7 +210,7 @@ function inProgress(inProgress) {
 
 function showError(message) {
   console.log(message);
-  document.querySelector("#errorMessage").textContent =   (message);
+  document.querySelector("#errorMessage").textContent = (message);
   toggleErrorVisibility(true);
 }
 
