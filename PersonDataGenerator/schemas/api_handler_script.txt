@@ -1,0 +1,46 @@
+schema "person_generation_schema"
+
+person = generate 1
+gender = params["gender"]
+age = params["age"]
+  
+person["gender"] = gender
+  
+if gender == "female"
+  schema "female_name"   
+  person["name"] = generate 1
+end
+
+if gender ==  "male"
+  schema "male_name"
+  person["name"] = generate 1
+end
+
+if gender == " "
+  schema "name"
+  person["name"] = generate 1
+end
+
+person["age"] = age
+
+schema "professional_info"
+person['professional_info'] = generate 1
+
+if age != "adult" && age != "young-adult" && age != "elderly"
+  person['professional_info']['title'] = 'student'
+  person['professional_info']['company_name'] = ''
+  person['professional_info']['buzzword'] = ''
+  person['professional_info']['department'] = ''
+  person['professional_info']['slogan'] = ''
+end;
+
+schema "location"
+person["location"] = generate 1
+
+person
+
+
+
+
+
+/person_generation_schema/:gender/:age

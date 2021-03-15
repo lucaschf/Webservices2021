@@ -1,4 +1,4 @@
-let generated_photos_key = "YOUR_KEY_HERE";
+let generated_photos_key = "YOUR_GENERATED_PHOTOS_KEY_HERE";
 var mock = [];
 
 function generatePhotosUrl() {
@@ -16,7 +16,7 @@ function generatePhotosUrl() {
   if (!ethnicity.isEmpty())
     photoGeneratorUrl += ("&ethnicity=" + ethnicity);
   if (!hairLength.isEmpty())
-    photoGeneratorUrl += ("&hairLength=" + hairLength);
+    photoGeneratorUrl += ("&hair_length=" + hairLength);
   if (!emotion.isEmpty())
     photoGeneratorUrl += ("&emotion=" + emotion);
 
@@ -56,7 +56,7 @@ function fetchData() {
 }
 
 function generateCard(face_data) {
-  let key = "8dc85790"; // mockaroo key for api needed
+  let key = "YOUR_MOCKAROO_API_KEY_HERE"; // mockaroo key for api needed
   let dataUrl = "https://my.api.mockaroo.com/person_generation_schema/";
 
   var gender = face_data.meta.gender[0];
@@ -120,6 +120,8 @@ function generateCard(face_data) {
     error: function (xhr, status, error) {
       let message = status + " " + error + " " + xhr.status + " " + xhr.statusText;
       console.log(message);
+
+      showError(message)
     }
   });
 }
